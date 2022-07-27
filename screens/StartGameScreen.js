@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 		marginTop: 100,
 		alignItems: 'center',
 		marginHorizontal: 24,
-		backgroundColor: '#4e0329',
+		backgroundColor: '#3b021f',
 		borderRadius: 8,
 		//  Shadow setting on Andriod
 		elevation: 4,

@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import { StyleSheet, View, TextInput, Alert } from 'react-native'
-import { maxNumberInputLength, alertTitle, alertMessage } from '../constants'
+import {
+	maxNumberInputLength,
+	alertTitle,
+	alertMessage,
+	colors,
+} from '../constants'
 
 import PrimaryButton from '../components/PrimaryButton'
 
@@ -58,12 +63,12 @@ const styles = StyleSheet.create({
 		marginTop: 100,
 		alignItems: 'center',
 		marginHorizontal: 24,
-		backgroundColor: '#3b021f',
+		backgroundColor: colors.primary800,
 		borderRadius: 8,
 		//  Shadow setting on Andriod
 		elevation: 4,
 		// Shadow setting on IOS
-		shadowColor: 'black',
+		shadowColor: colors.black,
 		shadowOffset: { width: 0, height: 2 },
 		shadowRadius: 6,
 		shadowOpacity: 0.25,
@@ -72,9 +77,9 @@ const styles = StyleSheet.create({
 		height: 50,
 		width: 50,
 		fontSize: 32,
-		borderBottomColor: '#bdb52f',
+		borderBottomColor: colors.accent500,
 		borderBottomWidth: 2,
-		color: '#bdb52f',
+		color: colors.accent500,
 		marginVertical: 8,
 		fontWeight: 'bold',
 		textAlign: 'center',

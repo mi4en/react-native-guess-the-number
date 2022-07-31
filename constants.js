@@ -7,5 +7,10 @@ export const gameScreenTitle = "Opponent's Guess"
 
 // Colors
 export const colors = {
-	primary: '#72063c',
+	primary500: '#72063c',
+	primary600: '#640233',
+	primary800: '#3b021f',
+	accent500: '#bdb52f',
+	black: 'black',
+	white: 'white',
 }

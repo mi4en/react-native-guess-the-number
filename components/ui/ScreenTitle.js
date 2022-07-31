@@ -1,6 +1,6 @@
 import { StyleSheet, Text } from 'react-native'
 import React from 'react'
-import { colors } from '../constants'
+import { colors } from '../../constants'
 
 const ScreenTitle = ({ children }) => {
 	return <Text style={styles.title}>{children}</Text>

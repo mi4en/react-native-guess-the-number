@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { gameScreenTitle } from '../constants'
+import { useState } from 'react'
+import { gameScreenTitle, minNumber, maxNumber } from '../constants'
+import { generateRandomBetween } from '../utils'
 
-import ScreenTitle from '../components/ScreenTitle'
+import ScreenTitle from '../components/ui/ScreenTitle'
 
-const GameScreen = () => {
+const GameScreen = ({ userNumber }) => {
+	const initialGuess = generateRandomBetween(minNumber, maxNumber, userNumber)
+	const [currentGuess, setCurrentGuess] = useState(initialGuess)
 	return (
 		<View style={styles.screen}>
 			<ScreenTitle>{gameScreenTitle}</ScreenTitle>

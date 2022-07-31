@@ -12,7 +12,7 @@ export default function App() {
 	const pickedNumberHandler = pickedNumber => setUserNumber(pickedNumber)
 
 	const screen = userNumber ? (
-		<GameScreen />
+		<GameScreen userNumber={userNumber} />
 	) : (
 		<StartGameScreen onPickNumber={pickedNumberHandler} />
 	)

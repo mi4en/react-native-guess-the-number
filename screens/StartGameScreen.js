@@ -4,7 +4,7 @@ import { maxNumberInputLength, alertTitle, alertMessage } from '../constants'
 
 import PrimaryButton from '../components/PrimaryButton'
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ onPickNumber }) => {
 	const [enteredNumber, setEnteredNumber] = useState('')
 
 	const inputHandler = value => {
@@ -22,6 +22,7 @@ const StartGameScreen = () => {
 		}
 
 		console.log('enteredInput :>> ', enteredNumber)
+		onPickNumber(enteredNumber)
 	}
 
 	const resetInputHandler = () => setEnteredNumber('')

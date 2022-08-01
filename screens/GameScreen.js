@@ -1,9 +1,11 @@
-import { Alert, StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, View } from 'react-native'
 import { useState, useEffect } from 'react'
 import { gameScreenTitle, minNumber, maxNumber } from '../constants'
 import { generateRandomBetween } from '../utils'
 
 import ScreenTitle from '../components/ui/ScreenTitle'
+import Card from '../components/ui/Card'
+import InstrucitonText from '../components/ui/InstrucitonText'
 import NumberContainer from '../components/game/NumberContainer'
 import PrimaryButton from '../components/ui/PrimaryButton'
 
@@ -25,8 +27,6 @@ const GameScreen = ({ userNumber, onGameOver }) => {
 			(direction === 'lower' && currentGuess < userNumber) ||
 			(direction === 'greater' && currentGuess > userNumber)
 		) {
-			console.log('DIRECTION: ', direction)
-			// Alert.alert("Don't cheat!", [{ text: 'Sorry!', style: 'cancel' }])
 			Alert.alert('Gotcha!', "Don't cheat!", [
 				{ text: 'Sorry!', style: 'cancel' },
 			])
@@ -52,8 +52,8 @@ const GameScreen = ({ userNumber, onGameOver }) => {
 		<View style={styles.screen}>
 			<ScreenTitle>{gameScreenTitle}</ScreenTitle>
 			<NumberContainer>{currentGuess}</NumberContainer>
-			<View>
-				<Text>Higher or lower?</Text>
+			<Card>
+				<InstrucitonText>Higher or lower?</InstrucitonText>
 				<View style={styles.buttonsContainer}>
 					<PrimaryButton onPress={() => nextGuessHandler('lower')}>
 						-
@@ -62,7 +62,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
 						+
 					</PrimaryButton>
 				</View>
-			</View>
+			</Card>
 			{/* <View>Log Rounds</View> */}
 		</View>
 	)
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
 		padding: 24,
 	},
 	buttonsContainer: {
-		// flexDirection: 'row',
+		flexDirection: 'row',
+		justifyContent: 'stretch',
 	},
 })

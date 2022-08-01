@@ -2,8 +2,8 @@ import { StyleSheet, Text } from 'react-native'
 import React from 'react'
 import { colors } from '../../constants'
 
-const InstrucitonText = ({ children }) => {
-	return <Text style={styles.instructionText}>{children}</Text>
+const InstrucitonText = ({ children, style }) => {
+	return <Text style={[styles.instructionText, style]}>{children}</Text>
 }
 
 export default InstrucitonText

@@ -1,7 +1,9 @@
 import { Alert, StyleSheet, View } from 'react-native'
 import { useState, useEffect } from 'react'
+import { Ionicons } from '@expo/vector-icons'
 import { gameScreenTitle, minNumber, maxNumber } from '../constants'
 import { generateRandomBetween } from '../utils'
+import { colors } from '../constants'
 
 import ScreenTitle from '../components/ui/ScreenTitle'
 import Card from '../components/ui/Card'
@@ -59,12 +61,12 @@ const GameScreen = ({ userNumber, onGameOver }) => {
 				<View style={styles.buttonsContainer}>
 					<View style={styles.buttonContainer}>
 						<PrimaryButton onPress={() => nextGuessHandler('lower')}>
-							-
+							<Ionicons name='md-remove' size={24} color={colors.white} />
 						</PrimaryButton>
 					</View>
 					<View style={styles.buttonContainer}>
 						<PrimaryButton onPress={() => nextGuessHandler('greater')}>
-							+
+							<Ionicons name='md-add' size={24} color={colors.white} />
 						</PrimaryButton>
 					</View>
 				</View>

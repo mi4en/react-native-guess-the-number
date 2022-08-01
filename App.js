@@ -5,17 +5,28 @@ import { colors } from './constants'
 
 import StartGameScreen from './screens/StartGameScreen'
 import GameScreen from './screens/GameScreen'
+import GameOverScreen from './screens/GameOverScreen'
 
 export default function App() {
 	const [userNumber, setUserNumber] = useState(null)
+	const [isGameOver, setIsGameOver] = useState(true)
 
-	const pickedNumberHandler = pickedNumber => setUserNumber(pickedNumber)
+	const pickedNumberHandler = pickedNumber => {
+		setUserNumber(parseInt(pickedNumber))
+		setIsGameOver(false)
+	}
 
-	const screen = userNumber ? (
-		<GameScreen userNumber={userNumber} />
-	) : (
-		<StartGameScreen onPickNumber={pickedNumberHandler} />
-	)
+	const gameOverHandler = () => setIsGameOver(true)
+
+	let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />
+
+	if (userNumber) {
+		screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
+	}
+
+	if (isGameOver && userNumber) {
+		screen = <GameOverScreen />
+	}
 
 	return (
 		<LinearGradient

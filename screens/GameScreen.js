@@ -1,37 +1,47 @@
 import { Alert, StyleSheet, Text, View } from 'react-native'
-import { useState } from 'react'
-import { gameScreenTitle } from '../constants'
+import { useState, useEffect } from 'react'
+import { gameScreenTitle, minNumber, maxNumber } from '../constants'
 import { generateRandomBetween } from '../utils'
 
 import ScreenTitle from '../components/ui/ScreenTitle'
 import NumberContainer from '../components/game/NumberContainer'
 import PrimaryButton from '../components/ui/PrimaryButton'
 
-let minNumber = 1
-let maxNumber = 100
+let minBoundary = 1
+let maxBoundary = 100
 
-const GameScreen = ({ userNumber }) => {
+const GameScreen = ({ userNumber, onGameOver }) => {
 	const initialGuess = generateRandomBetween(minNumber, maxNumber, userNumber)
 	const [currentGuess, setCurrentGuess] = useState(initialGuess)
+
+	useEffect(() => {
+		if (currentGuess === userNumber) {
+			onGameOver()
+		}
+	}, [currentGuess, userNumber, onGameOver])
 
 	const nextGuessHandler = direction => {
 		if (
 			(direction === 'lower' && currentGuess < userNumber) ||
 			(direction === 'greater' && currentGuess > userNumber)
 		) {
-			Alert.alert("Don't cheat!", [{ text: 'Sorry!', style: 'cancel' }])
+			console.log('DIRECTION: ', direction)
+			// Alert.alert("Don't cheat!", [{ text: 'Sorry!', style: 'cancel' }])
+			Alert.alert('Gotcha!', "Don't cheat!", [
+				{ text: 'Sorry!', style: 'cancel' },
+			])
 			return
 		}
 
 		if (direction === 'lower') {
-			maxNumber = currentGuess
+			maxBoundary = currentGuess
 		} else {
-			minNumber = currentGuess + 1
+			minBoundary = currentGuess + 1
 		}
 
 		const newRandomNumber = generateRandomBetween(
-			minNumber,
-			maxNumber,
+			minBoundary,
+			maxBoundary,
 			currentGuess,
 		)
 

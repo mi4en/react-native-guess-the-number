@@ -9,6 +9,7 @@ import ScreenTitle from '../components/ui/ScreenTitle'
 import Card from '../components/ui/Card'
 import InstrucitonText from '../components/ui/InstrucitonText'
 import NumberContainer from '../components/game/NumberContainer'
+import GuessLogItem from '../components/game/GuessLogItem'
 import PrimaryButton from '../components/ui/PrimaryButton'
 
 let minBoundary = 1
@@ -59,6 +60,8 @@ const GameScreen = ({ userNumber, onGameOver, countRounds }) => {
 		setGuessRounds(prevGuessRounds => [newRandomNumber, ...prevGuessRounds])
 	}
 
+	const guessRoundsListLength = guessRounds.length
+
 	return (
 		<View style={styles.screen}>
 			<ScreenTitle>{gameScreenTitle}</ScreenTitle>
@@ -80,13 +83,18 @@ const GameScreen = ({ userNumber, onGameOver, countRounds }) => {
 					</View>
 				</View>
 			</Card>
-			<View>
+			<View style={styles.listContainer}>
 				{/* {guessRounds.map((round, index) => (
 					<Text key={index}>{round}</Text>
 				))} */}
 				<FlatList
 					data={guessRounds}
-					renderItem={itemData => <Text>{itemData.item}</Text>}
+					renderItem={itemData => (
+						<GuessLogItem
+							roundNumber={guessRoundsListLength - itemData.index}
+							guess={currentGuess}
+						/>
+					)}
 					keyExtractor={item => item}
 				/>
 			</View>
@@ -109,5 +117,9 @@ const styles = StyleSheet.create({
 	},
 	buttonContainer: {
 		flex: 1,
+	},
+	listContainer: {
+		flex: 1,
+		padding: 16,
 	},
 })

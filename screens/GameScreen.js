@@ -15,14 +15,14 @@ import PrimaryButton from '../components/ui/PrimaryButton'
 let minBoundary = 1
 let maxBoundary = 100
 
-const GameScreen = ({ userNumber, onGameOver, countRounds }) => {
+const GameScreen = ({ userNumber, onGameOver }) => {
 	const initialGuess = generateRandomBetween(minNumber, maxNumber, userNumber)
 	const [currentGuess, setCurrentGuess] = useState(initialGuess)
 	const [guessRounds, setGuessRounds] = useState([initialGuess])
 
 	useEffect(() => {
 		if (currentGuess === userNumber) {
-			onGameOver()
+			onGameOver(guessRounds.length)
 		}
 	}, [currentGuess, userNumber, onGameOver])
 
@@ -41,8 +41,6 @@ const GameScreen = ({ userNumber, onGameOver, countRounds }) => {
 			])
 			return
 		}
-
-		countRounds()
 
 		if (direction === 'lower') {
 			maxBoundary = currentGuess
